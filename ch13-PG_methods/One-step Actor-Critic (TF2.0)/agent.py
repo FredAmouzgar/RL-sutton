@@ -63,3 +63,11 @@ class Agent:
 
     def process_state(self, state):
         return tf.convert_to_tensor(state.reshape(1, self.state_size), dtype=tf.float32)
+    
+    def save(self):
+        self.actor.save("actor.h5")
+        self.critic.save("critic.h5")
+        
+    def load(self):
+        self.actor = tf.keras.models.load_model("actor.h5")
+        self.critic = tf.keras.models.load_model("critic.h5")
