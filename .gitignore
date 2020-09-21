@@ -1,1 +1,16 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.ipynb_checkpoints/
+.idea
+*.py[cod]
+*$py.class
 **/*.ipynb_checkpoints/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
