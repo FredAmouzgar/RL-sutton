@@ -3,10 +3,11 @@ from tensorflow import keras
 import tensorflow_probability as tfp
 
 class Agent:
-    def __init__(self, state_size, action_size, gamma=0.99, alpha_w=0.15, alpha_theta=0.1):
+    def __init__(self, state_size, action_size, env_name, gamma=0.99, alpha_w=0.15, alpha_theta=0.1):
         self.I = 1
         self.state_size = state_size
         self.action_size = action_size
+        self.env_name = env_name
         self.gamma = gamma
         self.alpha_w = alpha_w
         self.alpha_theta = alpha_theta
@@ -65,9 +66,9 @@ class Agent:
         return tf.convert_to_tensor(state.reshape(1, self.state_size), dtype=tf.float32)
     
     def save(self):
-        self.actor.save("actor.h5")
-        self.critic.save("critic.h5")
+        self.actor.save(f"actor_{self.env_name}.h5")
+        self.critic.save(f"critic_{self.env_name}.h5")
         
     def load(self):
-        self.actor = tf.keras.models.load_model("actor.h5")
-        self.critic = tf.keras.models.load_model("critic.h5")
+        self.actor = tf.keras.models.load_model(f"actor_{self.env_name}.h5")
+        self.critic = tf.keras.models.load_model(f"critic_{self.env_name}.h5")
