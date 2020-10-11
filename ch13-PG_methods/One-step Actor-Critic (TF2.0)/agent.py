@@ -11,11 +11,11 @@ class Agent:
         self.gamma = gamma
         self.alpha_w = alpha_w
         self.alpha_theta = alpha_theta
-        self.critic = keras.Sequential([keras.layers.Dense(50, activation="relu", input_shape=(4,)),
+        self.critic = keras.Sequential([keras.layers.Dense(50, activation="relu", input_shape=(self.state_size,)),
                                         keras.layers.Dense(1)])
         #self.critic.compile(optimizer=keras.optimizers.Adam(learning_rate=self.alpha_w))
 
-        self.actor = keras.Sequential([keras.layers.Dense(50, activation="relu", input_shape=(4,)),
+        self.actor = keras.Sequential([keras.layers.Dense(50, activation="relu", input_shape=(self.state_size,)),
                                        keras.layers.Dense(action_size, activation=keras.activations.sigmoid)])
 
         self.optim1 = keras.optimizers.Adam(learning_rate=0.001)
